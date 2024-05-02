@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Restaurant {
-  id                 String     @id @default(uuid())
-  name               String
-  imageUrl           String
-  deliveryFee        Decimal    @db.Decimal(10, 2)
-  deliveryTimeMinute Int
+  id                  String     @id @default(uuid())
+  name                String
+  imageUrl            String
+  deliveryFee         Decimal    @db.Decimal(10, 2)
+  deliveryTimeMinutes Int
   //Relação many-to-many relationship
-  categories         Category[]
-  products           Product[]
+  categories          Category[]
+  products            Product[]
 }
 
 model Category {
@@ -31,9 +31,10 @@ model Product {
   name               String
   imageUrl           String
   price              Decimal    @db.Decimal(10, 2)
-  discountPercentege Int        @default(0)
+  discountPercentage Int        @default(0)
   restaurantId       String
   restaurant         Restaurant @relation(fields: [restaurantId], references: [id])
   categoryId         String
   category           Category   @relation(fields: [categoryId], references: [id])
+  description        String
 }
